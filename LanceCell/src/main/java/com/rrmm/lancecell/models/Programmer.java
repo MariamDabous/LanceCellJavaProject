@@ -3,7 +3,6 @@ package com.rrmm.lancecell.models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -66,10 +64,7 @@ public class Programmer {
     
     @URL(message = "Add a valid URL")
     @NotNull
-    private String linkedIn;   
-    
-    @OneToOne(mappedBy = "programmer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Image cv;
+    private String linkedIn;  
    
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -181,13 +176,6 @@ public class Programmer {
 		this.linkedIn = linkedIn;
 	}
 
-	public Image getCv() {
-		return cv;
-	}
-
-	public void setCv(Image cv) {
-		this.cv = cv;
-	}
 
 	public Date getCreatedAt() {
 		return createdAt;

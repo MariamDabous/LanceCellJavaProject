@@ -2,11 +2,16 @@ package com.rrmm.lancecell.models;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -15,7 +20,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import javax.persistence.FetchType;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -50,6 +55,13 @@ public class User {
 	@NotEmpty(message = "Phone Number is required!")
 	@Size(min = 8, max = 128, message = "Phone Number must be between 8 and 128 characters")
 	private String phoneNumber;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "users_roles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
