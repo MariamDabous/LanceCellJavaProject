@@ -18,6 +18,12 @@ public class ProgrammerService {
 	private ProgrammerRepository programmerRepository;
 	
 	
+	
+	
+	public ProgrammerService(ProgrammerRepository programmerRepository) {
+		this.programmerRepository = programmerRepository;
+	}
+
 	public Programmer register(Programmer newUser, BindingResult result) {
 		if(programmerRepository.findByEmail(newUser.getEmail()).isPresent()) {
 			result.rejectValue( "email", "Unique", "This email is already in use!");
