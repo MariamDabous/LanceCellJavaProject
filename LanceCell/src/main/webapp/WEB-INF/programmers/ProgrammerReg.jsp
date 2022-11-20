@@ -18,7 +18,7 @@
 
 <div class="form1" style="margin-left:11%">
 	<h3 style="margin-left : 15%;font-weight:bold">Register</h3>
-	<form:form action="/register" method="post" modelAttribute="newUser"  style="width :400px;margin-left: 15%;">
+	<form:form action="/registerForProg" method="post" modelAttribute="newProg"  style="width :400px;margin-left: 15%;">
 	  <div class="form-group">
 	    <form:label path="firstName" for="exampleInputEmail1">First Name : </form:label>
 	    <form:errors path="firstName"/>
