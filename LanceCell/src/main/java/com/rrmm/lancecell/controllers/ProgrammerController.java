@@ -80,7 +80,7 @@ public class ProgrammerController {
 			return "redirect:/programmers/Dashboard";
 		}
 		else {
-			return "redirect:/programmers/Dashboard";
+			return "redirect:/programmers";
 		}
 	}
 

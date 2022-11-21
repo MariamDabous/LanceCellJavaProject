@@ -14,12 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.services.LanguageService;
 import com.rrmm.lancecell.services.OwnerService;
+import com.rrmm.lancecell.services.ProgrammerService;
+import com.rrmm.lancecell.services.ProjectService;
 @Controller
 @RequestMapping("/owners")
 public class OwnerController {
 	@Autowired
 	OwnerService ownerService;
+	@Autowired
+	ProgrammerService programmerService;
+	@Autowired
+    private ProgrammerService ProgServ;
+	@Autowired
+    private ProjectService ProjectServ;
+	@Autowired
+    private LanguageService LanguageServ;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
@@ -68,10 +80,26 @@ public class OwnerController {
 	@GetMapping("/home")
 	public String success(HttpSession session) {
 		if(session.getAttribute("ownerId")!=null) {
-			return "redirect:/projects";
+			return "redirect:/owners/Dashboard";
 		}
 		else {
 			return "redirect:/owners";
 		}
 	}
+
+	@GetMapping("/Dashboard")
+	public String ProgDash(Model model , HttpSession session) {
+		if (session.getAttribute("ownerId") != null) {
+	        Long owner_id = (Long) session.getAttribute("ownerId");
+	        Owner thisOwner = ownerService.find(owner_id);
+	        model.addAttribute("thisOwner", thisOwner);
+	        model.addAttribute("AllProjects" , thisOwner.getMyProjects());
+	        return "owners/dashboard.jsp";
+	    } 
+	        else {
+	            return "redirect:/";
+	        }
+	}
+
+
 }
