@@ -1,0 +1,151 @@
+*{
+	padding : 0px;
+	margin: 0px ;
+	font-family:monospace;
+}
+.Lance{
+	color:white ;
+	font-size:250%;
+	margin-left:8%;
+	
+}
+p{
+	color:white ;
+	margin-left:8%;
+	margin-top:2%;
+	font-size:120%;
+}
+.we{
+	font-size:600% ;
+	color:white ;
+	margin-left:7.5%;
+	margin-top:3%;
+	font-family:inherit;
+	
+}
+main{
+width:100%;
+background-image: url("blog.jpg");
+	  background-repeat: no-repeat, repeat;
+	  background-size: cover;
+	   opacity: 12;
+	   height : 600px ;
+
+}
+body{
+	width:100%;	
+}
+.navb{
+	display:flex ;
+	justify-content:space-between;
+	padding-top:3%;
+}
+.anch{
+	text-decoration:none;
+	color:white;
+	font-size:110%;
+	margin-left:10%;
+
+
+}
+.anch:hover{
+	text-decoration:none;
+	color:grey;
+}
+.tabs{
+	width:40%;
+	margin-top:3%;
+}
+.btnn{
+	background: transparent;
+    color:white;
+    border: 1px solid white ;
+    padding:1%;
+    margin-left:8%;
+	margin-top:2%;
+	border-radius:5%;
+}
+.footer-clean {
+  padding:50px 0;
+  background-color:#fff;
+  color:#4b4c4d;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  color:inherit;
+  opacity:0.75;
+
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+.l{
+	color:#A9A9A9;
+	font-size:190%;
+}
+.logo{
+	width:15%;
+	
+	
+}
