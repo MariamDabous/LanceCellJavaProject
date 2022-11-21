@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<title>Owner Dashboard</title>
+<title>Programmer Dashboard</title>
 </head>
 <body>
 	<header class="container">
@@ -86,7 +86,7 @@
 			</form:form>
 		</div>
 		<div class="row border mx-5">
-			<form:form action="/owners/login" method="post" modelAttribute="newLogin">
+			<form:form action="/programmers/login" method="post" modelAttribute="newLogin">
 				<div class="mb-3">
 				<h2>Login</h2>
 				</div>

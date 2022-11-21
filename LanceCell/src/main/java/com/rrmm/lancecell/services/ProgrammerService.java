@@ -1,5 +1,6 @@
 package com.rrmm.lancecell.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -64,4 +65,7 @@ public class ProgrammerService {
 			return user;
 		}
 	}
+	 public List<Programmer> allProjects() {
+	     return programmerRepository.findAll();
+	 }
 }

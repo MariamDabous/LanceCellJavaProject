@@ -58,12 +58,13 @@ public class Programmer {
     @Size(min=8, max=128, message="Phone Number must be between 8 and 128 characters")
     private String phoneNumber;
     
-    @URL(message = "Add a valid URL")
-    @NotNull
+    @NotEmpty(message="Git Hub User Name is required!")
+    @Size(min=3, max=20, message="Git Hub User Name must be between 3 and 20 characters")
     private String github;
     
-    @URL(message = "Add a valid URL")
-    @NotNull
+
+    @NotEmpty(message="linkedInis required!")
+    @Size(min=3, max=200, message="linkedIn must be between 3 and 200 characters")
     private String linkedIn;  
    
     @Column(updatable=false)
@@ -85,8 +86,7 @@ public class Programmer {
     @JoinColumn(name="project_id")
     private Project project ;
     
-    @NotNull
-	private Boolean isApproved;
+	private Boolean isApproved = false ;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
