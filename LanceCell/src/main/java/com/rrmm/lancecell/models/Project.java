@@ -139,6 +139,7 @@ public class Project {
 	public void setProgrammmers(List<Programmer> programmmers) {
 		this.programmmers = programmmers;
 	}
+	
 
 	public List<Language> getLanguages() {
 		return languages;
@@ -162,6 +163,12 @@ public class Project {
 
 	public void setRequests(List<Programmer> requests) {
 		this.requests = requests;
+	}
+	public ProjectCategory getCategory() {
+		return category;
+	}
+	public void setCategory(ProjectCategory category) {
+		this.category = category;
 	}
     
     

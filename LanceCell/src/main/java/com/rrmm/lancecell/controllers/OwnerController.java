@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Owner;
-import com.rrmm.lancecell.models.Programmer;
-import com.rrmm.lancecell.services.LanguageService;
 import com.rrmm.lancecell.services.OwnerService;
 import com.rrmm.lancecell.services.ProgrammerService;
-import com.rrmm.lancecell.services.ProjectService;
 @Controller
 @RequestMapping("/owners")
 public class OwnerController {
@@ -26,12 +23,6 @@ public class OwnerController {
 	OwnerService ownerService;
 	@Autowired
 	ProgrammerService programmerService;
-	@Autowired
-    private ProgrammerService ProgServ;
-	@Autowired
-    private ProjectService ProjectServ;
-	@Autowired
-    private LanguageService LanguageServ;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {

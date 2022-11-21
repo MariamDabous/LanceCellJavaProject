@@ -32,7 +32,7 @@ public class ProgrammerController {
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
-		if(session.getAttribute("userId")!=null) {
+		if(session.getAttribute("programmerId")!=null) {
 			return "redirect:/programmers/home";
 		}
 		else {
@@ -41,6 +41,7 @@ public class ProgrammerController {
 			return "/programmers/index.jsp";
 		}
 	}
+	
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("newProgrammer")Programmer newProgrammer,BindingResult result, Model model, HttpSession session) {
 		Programmer programmer=programmerService.register(newProgrammer, result);
@@ -54,6 +55,7 @@ public class ProgrammerController {
 			return "redirect:/programmers/home";
 		}
 	}
+	
 	@PostMapping("/login")
 	public String login(@Valid @ModelAttribute("newLogin")LoginUser newLogin,BindingResult result, Model model, HttpSession session) {
 		Programmer programmer=programmerService.login(newLogin, result);
@@ -67,6 +69,7 @@ public class ProgrammerController {
 			return "redirect:/programmers/home";
 		}
 	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		if(session.getAttribute("programmerId")!=null) {
@@ -74,6 +77,7 @@ public class ProgrammerController {
 		}
 		return "redirect:/programmers";
 	}
+	
 	@GetMapping("/home")
 	public String success(HttpSession session) {
 		if(session.getAttribute("programmerId")!=null) {
@@ -99,16 +103,15 @@ public class ProgrammerController {
 	            return "redirect:/";
 	        }
 	}
-
-		
-@GetMapping("/Profile")
-public String ShowProgrammer(Model model, HttpSession session) {
-	Long Programmer_id = (Long) session.getAttribute("programmerId");
-    Programmer thisProg = ProgServ.find(Programmer_id);
-    model.addAttribute("thisProg", thisProg);
-	return "programmers/profile.jsp";
 	
-}
+	@GetMapping("/Profile")
+	public String ShowProgrammer(Model model, HttpSession session) {
+		Long Programmer_id = (Long) session.getAttribute("programmerId");
+		Programmer thisProg = ProgServ.find(Programmer_id);
+		model.addAttribute("thisProg", thisProg);
+		return "programmers/profile.jsp";
+	
+	}
 
 }
 
