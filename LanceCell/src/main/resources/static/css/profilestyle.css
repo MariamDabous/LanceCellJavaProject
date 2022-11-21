@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #d3c2e8;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(208, 208, 208), rgb(182, 185, 189));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(215, 213, 214), rgb(210, 210, 210))
+    }

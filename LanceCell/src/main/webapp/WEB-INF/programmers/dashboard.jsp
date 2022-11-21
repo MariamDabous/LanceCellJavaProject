@@ -32,7 +32,7 @@
 <c:forEach var="thisProject" items="${AllProjects}">
 <tr>
 <td><a href="/projects/show/${thisProject.id}">${thisProject.title}</a></td>
-<td>${thisProject.Owner.firstName}${thisProject.Owner.lastName}</td>
+<td>${thisProject.owner.firstName}${thisProject.owner.lastName}</td>
 <td><a href="/projects/showTeam/${thisProject.id}">Show Team</a></td>
 <td><a href="/projects/joinRequest/${thisProject.id}">Request to join</a></td>
 
@@ -52,7 +52,7 @@
 <c:forEach var="thisProgProject" items="${thisProgProject}">
 <tr>
 <td><a href="/projects/show/${thisProgProject.id}">${thisProgProject.title}</a></td>
-<td>${thisProgProject.Owner.firstName}${thisProgProject.Owner.lastName}</td>
+<td>${thisProgProject.owner.firstName}${thisProgProject.owner.lastName}</td>
 <td><a href="/projects/showTeam/${thisProgProject.id}">Show Team</a></td>
 </tr>
 </c:forEach>
