@@ -52,7 +52,7 @@
 <c:forEach var="thisProgProject" items="${thisProgProject}">
 <tr>
 <td><a href="/projects/show/${thisProgProject.id}">${thisProgProject.title}</a></td>
-<td>${thisProgProject.Owner.firstName}${thisProgProject.Owner.lastName}</td>
+<td>${thisProgProject.owner.firstName}${thisProgProject.owner.lastName}</td>
 <td><a href="/projects/showTeam/${thisProgProject.id}">Show Team</a></td>
 </tr>
 </c:forEach>
