@@ -13,67 +13,65 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
-import com.rrmm.lancecell.models.Programmer;
-import com.rrmm.lancecell.services.ProgrammerService;
-
+import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.services.OwnerService;
 @Controller
-@RequestMapping("/programmers")
-public class ProgrammerController {
+@RequestMapping("/owners")
+public class OwnerController {
 	@Autowired
-	ProgrammerService programmerService;
+	OwnerService ownerService;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
 		if(session.getAttribute("userId")!=null) {
-			return "redirect:/programmers/home";
+			return "redirect:/owners/home";
 		}
 		else {
 			model.addAttribute("newLogin", new LoginUser());
-			model.addAttribute("newProgrammer", new Programmer());
-			return "/programmers/index.jsp";
+			model.addAttribute("newOwner", new Owner());
+			return "/owners/index.jsp";
 		}
 	}
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("newProgrammer")Programmer newProgrammer,BindingResult result, Model model, HttpSession session) {
-		Programmer programmer=programmerService.register(newProgrammer, result);
+	public String register(@Valid @ModelAttribute("newOwner")Owner newOwner,BindingResult result, Model model, HttpSession session) {
+		Owner owner=ownerService.register(newOwner, result);
 		if(result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginUser());
-			return "/programmers/index.jsp";
+			return "/owners/index.jsp";
 		}
 		else {
-			session.setAttribute("programmerId", programmer.getId());
-			session.setAttribute("loggedProgrammer", programmer);
-			return "redirect:/programmers/home";
+			session.setAttribute("ownerId", owner.getId());
+			session.setAttribute("loggedOwner", owner);
+			return "redirect:/owners/home";
 		}
 	}
 	@PostMapping("/login")
 	public String login(@Valid @ModelAttribute("newLogin")LoginUser newLogin,BindingResult result, Model model, HttpSession session) {
-		Programmer programmer=programmerService.login(newLogin, result);
+		Owner owner=ownerService.login(newLogin, result);
 		if(result.hasErrors()) {
-			model.addAttribute("newProgrammer", new Programmer());
-			return "/programmers/index.jsp";
+			model.addAttribute("newOwner", new Owner());
+			return "/owners/index.jsp";
 		}
 		else {
-			session.setAttribute("programmerId", programmer.getId());
-			session.setAttribute("loggedProgrammer", programmer);
-			return "redirect:/programmers/home";
+			session.setAttribute("ownerId", owner.getId());
+			session.setAttribute("loggedOwner", owner);
+			return "redirect:/owners/home";
 		}
 	}
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		if(session.getAttribute("programmerId")!=null) {
+		if(session.getAttribute("ownerId")!=null) {
 			session.invalidate();
 		}
-		return "redirect:/programmers";
+		return "redirect:/owners";
 	}
 	@GetMapping("/home")
 	public String success(HttpSession session) {
-		if(session.getAttribute("programmerId")!=null) {
+		if(session.getAttribute("ownerId")!=null) {
 			return "redirect:/projects";
 		}
 		else {
-			return "redirect:/programmers";
+			return "redirect:/owners";
 		}
 	}
-
 }

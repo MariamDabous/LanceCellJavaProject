@@ -36,7 +36,7 @@ public class Owner {
 
 	@NotEmpty(message = "Email is required!")
 	@Email(message = "Please enter a valid email!")
-	private String username;
+	private String email;
 
 	@NotEmpty(message = "Password is required!")
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
@@ -96,12 +96,14 @@ public class Owner {
 		this.lastName = lastName;
 	}
 
-	public String getUsername() {
-		return username;
+	
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
