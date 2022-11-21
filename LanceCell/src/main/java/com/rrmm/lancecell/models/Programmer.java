@@ -42,7 +42,7 @@ public class Programmer {
     
     @NotEmpty(message="Email is required!")
     @Email(message="Please enter a valid email!")
-    private String email;
+    private String userName;
     
     @NotEmpty(message="Password is required!")
     @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
@@ -128,14 +128,12 @@ public class Programmer {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserName() {
+		return userName;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-
 	public String getPassword() {
 		return password;
 	}

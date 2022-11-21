@@ -50,8 +50,8 @@ public class Project {
     private List<Language> languages;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User owner;
+    @JoinColumn(name="owner_id")
+    private Owner owner;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -148,11 +148,11 @@ public class Project {
 		this.languages = languages;
 	}
 
-	public User getOwner() {
+	public Owner getOwner() {
 		return owner;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 

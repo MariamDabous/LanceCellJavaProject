@@ -9,9 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -21,11 +19,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
-@Table(name = "users")
-public class User {
-
+@Table(name="owners")
+public class Owner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -55,10 +51,6 @@ public class User {
 	@Size(min = 8, max = 128, message = "Phone Number must be between 8 and 128 characters")
 	private String phoneNumber;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roles;
-
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
@@ -75,11 +67,17 @@ public class User {
 		this.updatedAt = new Date();
 	}
 
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private List<Project> myProjects;
+	
+	public Owner() {}
+
 	public Long getId() {
 		return id;
 	}
 
-	public User() {
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -104,14 +102,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
 	}
 
 	public String getPassword() {
@@ -154,8 +144,13 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public List<Project> getMyProjects() {
+		return myProjects;
 	}
+
+	public void setMyProjects(List<Project> myProjects) {
+		this.myProjects = myProjects;
+	}
+	
 	
 }

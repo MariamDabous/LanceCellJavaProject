@@ -45,11 +45,6 @@
 	    <form:input path= "github" type="text" class="form-control" id="exampleInputPassword1" placeholder="Email"></form:input>
 	  </div>
 	  <div class="form-group">
-	    <form:label path="cv" for="exampleInputPassword1">CV: </form:label>
-	    <form:errors path="cv"/>
-	    <form:input path= "cv" type="file" class="form-control" id="exampleInputPassword1" placeholder="Email"></form:input>
-	  </div>
-	  <div class="form-group">
 	    <form:label path="password" for="exampleInputPassword1">Password:</form:label>
 	    <form:errors path="password"/>
 	    <form:input path="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></form:input>

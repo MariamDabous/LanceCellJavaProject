@@ -1,72 +1,41 @@
 package com.rrmm.lancecell.services;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-import com.rrmm.lancecell.models.LoginUser;
-import com.rrmm.lancecell.models.User;
-import com.rrmm.lancecell.repositories.UserRepository;
 
+import com.rrmm.lancecell.models.User;
+import com.rrmm.lancecell.repositories.RoleRepository;
+import com.rrmm.lancecell.repositories.UserRepository;
+ 
 @Service
 public class UserService {
-	private UserRepository userRepository;
-
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-	
-	public User register(User newUser, BindingResult result) {
-		if(userRepository.findByEmail(newUser.getEmail()).isPresent()) {
-			result.rejectValue( "email", "Unique", "This email is already in use!");
-		}
-		if(!newUser.getPassword().equals(newUser.getConfirm())) {
-			result.rejectValue("confirm", "Matches", "The confirm pwd must match pwd!");
-		}
-		if(result.hasErrors()) {
-			return null;
-		}
-		else {
-			String hashedPwd = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
-			newUser.setPassword(hashedPwd);
-			return userRepository.save(newUser);
-		}
-	}
-	
-	public User login(LoginUser newLogin,BindingResult result) {
-		if(result.hasErrors()) {
-			return null;
-		}
-		Optional<User> potentialUser = userRepository.findByEmail(newLogin.getEmail());
-		if(!potentialUser.isPresent()) {
-			result.rejectValue("email", "Unique", "Email or Pwd wrong");
-			return null;
-		}
-		User user = potentialUser.get();
-		if(!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
-			result.rejectValue("password", "Matches", "Email or Pwd wrong");
-		}
-		if(result.hasErrors()) {
-			return null;
-		}
-		else {
-			return user;
-		}
-	}
-	
-	public List<User> all(){
-		return userRepository.findAll();
-	}
-	
-	public User get(Long id) {
-		Optional<User> opUser= userRepository.findById(id);
-		if(opUser.isPresent()) {
-			return opUser.get();
-		}
-		else {
-			return null;
-		}
-	}
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder)     {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+    
+    
+    // 1
+    public void saveWithUserRole(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roleRepository.findByName("ROLE_USER"));
+        userRepository.save(user);
+    }
+     
+     // 2 
+    public void saveUserWithAdminRole(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roleRepository.findByName("ROLE_ADMIN"));
+        userRepository.save(user);
+    }    
+    
+    // 3
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
