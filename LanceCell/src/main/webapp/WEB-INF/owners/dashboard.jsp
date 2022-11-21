@@ -11,18 +11,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Programmer Dashboard</title>
+<title>Owner Dashboard</title>
 </head>
 <body>
-<h1>Welcome ${thisProg.firstName } ${thisProg.lastName}</h1>
-<h2>Choose a language</h2>
+<h1>Welcome ${thisOwner.firstName } ${thisOwner.lastName}</h1>
+<a href="/owners/logout">Logout</a>
 
-<h2>All Projects : </h2>
+<h2>My Projects : </h2>
 <table>
 <thead>
 <tr>
 <th>Project Name </th>
-<th>Owner</th>
 <th>Team</th>
 <th>Actions</th>
 </tr>
@@ -32,30 +31,16 @@
 <c:forEach var="thisProject" items="${AllProjects}">
 <tr>
 <td><a href="/projects/show/${thisProject.id}">${thisProject.title}</a></td>
-<td>${thisProject.Owner.firstName}${thisProject.Owner.lastName}</td>
 <td><a href="/projects/showTeam/${thisProject.id}">Show Team</a></td>
-<td><a href="/projects/joinRequest/${thisProject.id}">Request to join</a></td>
+<td><a href="/projects/edit/${thisProject.id}">Edit</a> | <a href="/projects/delete/${thisProject.id}">Delete</a></td>
 
 </tr>
 </c:forEach>
 </table>
 <br><br>
-<h2>My Project: </h2>
-<table>
-<thead>
-<tr>
-<th>Project Name </th>
-<th>Owner</th>
-<th>Team</th>
-</tr>
-</thead>
-<c:forEach var="thisProgProject" items="${thisProgProject}">
-<tr>
-<td><a href="/projects/show/${thisProgProject.id}">${thisProgProject.title}</a></td>
-<td>${thisProgProject.Owner.firstName}${thisProgProject.Owner.lastName}</td>
-<td><a href="/projects/showTeam/${thisProgProject.id}">Show Team</a></td>
-</tr>
-</c:forEach>
-</table>
+<a href="/projects/add">Add Project</a>
+<form action="projects/requests/${thisOwner.id}">
+<input type="submit" value="Requests">
+</form>
 </body>
 </html>
