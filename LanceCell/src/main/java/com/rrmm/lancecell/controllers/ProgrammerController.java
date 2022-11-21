@@ -14,13 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.services.LanguageService;
 import com.rrmm.lancecell.services.ProgrammerService;
+import com.rrmm.lancecell.services.ProjectService;
 
 @Controller
 @RequestMapping("/programmers")
 public class ProgrammerController {
 	@Autowired
 	ProgrammerService programmerService;
+	@Autowired
+    private ProgrammerService ProgServ;
+	@Autowired
+    private ProjectService ProjectServ;
+	@Autowired
+    private LanguageService LanguageServ;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
@@ -69,11 +77,38 @@ public class ProgrammerController {
 	@GetMapping("/home")
 	public String success(HttpSession session) {
 		if(session.getAttribute("programmerId")!=null) {
-			return "redirect:/projects";
+			return "redirect:/programmers/Dashboard";
 		}
 		else {
-			return "redirect:/programmers";
+			return "redirect:/programmers/Dashboard";
 		}
 	}
 
+	@GetMapping("/Dashboard")
+	public String ProgDash(Model model , HttpSession session) {
+		if (session.getAttribute("programmerId") != null) {
+	        Long Programmer_id = (Long) session.getAttribute("programmerId");
+	        Programmer thisProg = ProgServ.find(Programmer_id);
+	        model.addAttribute("thisProg", thisProg);
+	        model.addAttribute("AllProjects" , ProjectServ.allProjects());
+	        model.addAttribute("thisProgProject" , thisProg.getProject());
+	        model.addAttribute("AllLanguages" , LanguageServ.allLanguages());
+	        return "programmers/dashboard.jsp";
+	    }
+	        else {
+	            return "redirect:/";
+	        }
+	}
+
+		
+@GetMapping("/Profile")
+public String ShowProgrammer(Model model, HttpSession session) {
+	Long Programmer_id = (Long) session.getAttribute("programmerId");
+    Programmer thisProg = ProgServ.find(Programmer_id);
+    model.addAttribute("thisProg", thisProg);
+	return "programmers/profile.jsp";
+	
 }
+
+}
+

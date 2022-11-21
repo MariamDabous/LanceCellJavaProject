@@ -1,11 +1,13 @@
 package com.rrmm.lancecell.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rrmm.lancecell.models.Language;
+import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.repositories.LanguageRepository;
 
 @Service
@@ -38,5 +40,8 @@ public class LanguageService {
 		}
 		
 	}
+	 public List<Language> allLanguages() {
+	     return languageRepository.findAll();
+	 }
 
 }
