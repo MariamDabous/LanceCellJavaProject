@@ -22,9 +22,9 @@ public class ProjectService {
 		projectRepository.delete(project);
 	}
 	public Project find(Long id) {
-		Optional<Project> opProject = projectRepository.findById(id);
-		if(opProject.isPresent()) {
-			return opProject.get();
+		Optional<Project> optionalProject = projectRepository.findById(id);
+		if(optionalProject.isPresent()) {
+			return optionalProject.get();
 		}
 		else {
 			return null;
