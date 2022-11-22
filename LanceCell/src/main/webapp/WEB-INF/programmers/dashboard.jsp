@@ -13,13 +13,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Programmer Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </head>
+
+
 <body>
-	<h1>Welcome ${thisProg.firstName } ${thisProg.lastName}</h1>
+	<h1 style="margin-top:2%;margin-left:7%">Welcome "<span style="color:green;font-family:cursive;"> ${thisProg.firstName } ${thisProg.lastName}</span>" </h1>
+    <a style="margin-left: 77%"  href="/programmers/logout">Logout</a>
+    
+	<div style="display:flex;margin-left: 8%;margin-top:1%;margin-right:17%;justify-content:space-between;">
 	<h3>
 		<a href="/programmers/Profile/${thisProg.id}">My Profile</a>
 	</h3>
-	<h2>Choose a language</h2>
+	
 	<form action="/programmers/search">
 		<select name="language">
 			<c:forEach var="language" items="${languages}">
@@ -28,8 +35,10 @@
 		</select>
 		<input type="submit" value="Search"/>
 	</form>
-	<h2>All Projects :</h2>
-	<table>
+	</div>
+	
+	<h2 style="margin-left: 8%;margin-top:4%">All Projects :</h2>
+	<table style="width: 60%;margin-left: 8%;margin-top:4%" class="table table-striped table-bordered ">
 		<thead>
 			<tr>
 				<th>Project Name</th>
@@ -39,7 +48,7 @@
 			</tr>
 		</thead>
 
-
+	<tbody>
 		<c:forEach var="thisProject" items="${AllProjects}">
 			<tr>
 				<td><a href="/programmers/show/${thisProject.id}">${thisProject.title}</a></td>
@@ -66,16 +75,19 @@
 							</c:choose>
 						</c:otherwise>
 					</c:choose></td>
-
-
-
-			</tr>
-		</c:forEach>
+					</tr>
+		         </c:forEach>
+		</tbody>
 	</table>
 	<br>
 	<br>
-	<h2>My Project:</h2>
-	<table>
+	
+	
+	
+	
+	
+	<h2 style="margin-left: 8%;margin-top:1%">My Project:</h2>
+	<table style="width: 60%;margin-left: 8%;margin-top:4%"  class="table table-striped table-bordered ">
 		<thead>
 			<tr>
 				<th>Project Name</th>
@@ -83,6 +95,7 @@
 				<th>Team</th>
 			</tr>
 		</thead>
+		<tbody>
 		<c:choose>
 		<c:when test="${thisProg.project != null}">
 		<tr>
@@ -95,10 +108,11 @@
 		</c:when>
 		<c:otherwise><tr></tr></c:otherwise>
 		</c:choose>
+		</tbody>
 	</table>
 
-	<h2>My Requests:</h2>
-	<table>
+	<h2 style="margin-left: 8%;margin-top:4%">My Requests:</h2>
+	<table style="width: 60%;margin-left: 8%;margin-top:4%"  class="table table-striped table-bordered ">
 		<thead>
 			<tr>
 				<th>Project Name</th>
@@ -106,6 +120,7 @@
 				<th>Team</th>
 			</tr>
 		</thead>
+		<tbody>
 		<c:forEach var="request" items="${sentRequests}">
 			<tr>
 				<td><a href="/programmers/show/${request.id}">${request.title}</a></td>
@@ -116,6 +131,7 @@
 					</form:form></td>
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 </body>
 </html>

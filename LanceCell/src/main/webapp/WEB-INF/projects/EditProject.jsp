@@ -17,11 +17,13 @@
 	<title>Edit Project</title>
 </head>
 <body>
+   
+
 	 <div class="card text-center" style="width : 550px;margin-left : 32%;margin-top: 5%;border: 2px solid rgb(178, 173, 173);">
         <div class="card-header">
           <h2>Edit Project</h2>
         </div>
-        <div class="card-body">
+   <div class="card-body">
 
 <form:form action="/projects/edit/${project.id}" method="post" modelAttribute="project"  style="width : 400px;margin-left : 15%;">
       <form:hidden path="owner" value="${owner_id}"/>
@@ -51,7 +53,9 @@
 		</div>
 
             <input style="margin-top:10px" type="submit" class="btn btn-primary" value="Update">
+            <p><a style="margin-top: 5%; font-size: 15px" class="btn btn-danger"  href="/projects/Dashboard">Dashboard</a></p> 
     </form:form>
+    </div>
     </div>
 
 </body>
