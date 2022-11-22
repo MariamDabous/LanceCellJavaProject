@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanceCell</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -15,10 +15,9 @@
 <body>
 <main>
 <nav class="navb">
-<h1 class="Lance"> <span class="l">L</span>anceCell <span><img class="logo" src="images/logo.jpg" alt="Logo" ></span></h1>
+<h1 class="Lance"><a href="/" style=" text-decoration: none; color:white;"> <span class="l">L</span>anceCell</a></h1>
 <div class="tabs">
-<a class="anch" href="/owners">Login</a>
-<a class="anch" href="/owners">Registration</a>
+<a class="anch" href="/owners">Login/Register</a>
 <a class="anch" href="/contactUs">Contact Us</a>
 </div>
 </nav>
