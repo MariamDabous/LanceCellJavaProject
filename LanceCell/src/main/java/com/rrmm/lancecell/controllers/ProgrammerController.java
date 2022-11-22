@@ -107,21 +107,15 @@ public class ProgrammerController {
 	        }
 	}
 	
-<<<<<<< HEAD
+
 	@GetMapping("/Profile/{id}")
 	public String ShowProgrammer(Model model, HttpSession session,@PathVariable("id") Long id) {
-		Programmer thisProg = ProgServ.find(id);
-=======
-	@GetMapping("/Profile")
-	public String ShowProgrammer(Model model, HttpSession session) {
-		Long Programmer_id = (Long) session.getAttribute("programmerId");
-		Programmer thisProg = programmerService.find(Programmer_id);
->>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
+		Programmer thisProg = programmerService.find(id);
 		model.addAttribute("thisProg", thisProg);
 		return "programmers/profile.jsp";
 	
 	}
-<<<<<<< HEAD
+
 	 @GetMapping("/show/{id}")
 	    public String showBook(Model model , @PathVariable("id") Long id,HttpSession session){
 	    	Long prog_id = (Long) session.getAttribute("programmerId");
@@ -132,7 +126,6 @@ public class ProgrammerController {
 	    	return "projects/ViewProject.jsp";
 	    }
 
-=======
 	@PostMapping("/joinRequest/{id}")
 	public String joinTeam(HttpSession session,@PathVariable("id")Long projId , Model model) {
 		Long Programmer_id = (Long) session.getAttribute("programmerId");
@@ -153,7 +146,7 @@ public class ProgrammerController {
 		return "redirect:/programmers/Dashboard";
 		
 	}
->>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
+
 
 }
 

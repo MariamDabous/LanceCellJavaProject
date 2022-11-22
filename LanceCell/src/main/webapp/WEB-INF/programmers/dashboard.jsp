@@ -34,17 +34,15 @@
 <tr>
 <td><a href="/programmers/show/${thisProject.id}">${thisProject.title}</a></td>
 <td>${thisProject.owner.firstName}${thisProject.owner.lastName}</td>
-<<<<<<< HEAD
-<td><a href="/programmers/showTeam/${thisProject.id}">Show Team</a></td>
-<td><a href="/programmers/joinRequest/${thisProject.id}">Request to join</a></td>
-=======
-<td><a href="/projects/showTeam/${thisProject.id}">Show Team</a></td>
-<td>
->>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
 
+<td><a href="/programmers/showTeam/${thisProject.id}">Show Team</a></td>
+<td>
 <form:form action="/programmers/joinRequest/${thisProject.id}" method="post">
 <input type="submit" value="Join Team"/>
-</form:form>
+</form:form></td>
+
+
+
 </tr>
 </c:forEach>
 </table>
@@ -67,7 +65,7 @@
 </c:forEach>
 </table>
 
-<h2>My Project: </h2>
+<h2>My Requests: </h2>
 <table>
 <thead>
 <tr>
