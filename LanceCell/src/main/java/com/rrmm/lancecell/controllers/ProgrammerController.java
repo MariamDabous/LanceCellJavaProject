@@ -123,6 +123,17 @@ public class ProgrammerController {
 		ProjectServ.update(thisProject);
 		return "redirect:/programmers/Dashboard";
 	}
+	
+	@DeleteMapping("/deleteRequest/{id}")
+	public String cancelRequest(HttpSession session,@PathVariable("id")Long projId , Model model) {
+		Long Programmer_id = (Long) session.getAttribute("programmerId");
+		Programmer thisProg = programmerService.find(Programmer_id);
+		Project thisProject= ProjectServ.find(projId);
+		thisProject.getRequests().remove(thisProg);
+		ProjectServ.update(thisProject);
+		return "redirect:/programmers/Dashboard";
+		
+	}
 
 }
 
