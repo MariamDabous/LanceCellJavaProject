@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,9 @@ public class ProgrammerController {
 	@Autowired
 	ProgrammerService programmerService;
 	@Autowired
-    private ProgrammerService ProgServ;
+    ProjectService ProjectServ;
 	@Autowired
-    private ProjectService ProjectServ;
-	@Autowired
-    private LanguageService LanguageServ;
+    LanguageService LanguageServ;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
@@ -95,10 +94,11 @@ public class ProgrammerController {
 	public String ProgDash(Model model , HttpSession session) {
 		if (session.getAttribute("programmerId") != null) {
 	        Long Programmer_id = (Long) session.getAttribute("programmerId");
-	        Programmer thisProg = ProgServ.find(Programmer_id);
+	        Programmer thisProg = programmerService.find(Programmer_id);
 	        model.addAttribute("thisProg", thisProg);
 	        model.addAttribute("AllProjects" , ProjectServ.allProjects());
 	        model.addAttribute("thisProgProject" , thisProg.getProject());
+	        model.addAttribute("sentRequests", thisProg.getSentRequests());
 	        model.addAttribute("AllLanguages" , LanguageServ.allLanguages());
 	        return "programmers/dashboard.jsp";
 	    }
@@ -107,13 +107,21 @@ public class ProgrammerController {
 	        }
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/Profile/{id}")
 	public String ShowProgrammer(Model model, HttpSession session,@PathVariable("id") Long id) {
 		Programmer thisProg = ProgServ.find(id);
+=======
+	@GetMapping("/Profile")
+	public String ShowProgrammer(Model model, HttpSession session) {
+		Long Programmer_id = (Long) session.getAttribute("programmerId");
+		Programmer thisProg = programmerService.find(Programmer_id);
+>>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
 		model.addAttribute("thisProg", thisProg);
 		return "programmers/profile.jsp";
 	
 	}
+<<<<<<< HEAD
 	 @GetMapping("/show/{id}")
 	    public String showBook(Model model , @PathVariable("id") Long id,HttpSession session){
 	    	Long prog_id = (Long) session.getAttribute("programmerId");
@@ -124,6 +132,28 @@ public class ProgrammerController {
 	    	return "projects/ViewProject.jsp";
 	    }
 
+=======
+	@PostMapping("/joinRequest/{id}")
+	public String joinTeam(HttpSession session,@PathVariable("id")Long projId , Model model) {
+		Long Programmer_id = (Long) session.getAttribute("programmerId");
+		Programmer thisProg = programmerService.find(Programmer_id);
+		Project thisProject= ProjectServ.find(projId);
+		thisProject.getRequests().add(thisProg);
+		ProjectServ.update(thisProject);
+		return "redirect:/programmers/Dashboard";
+	}
+	
+	@DeleteMapping("/deleteRequest/{id}")
+	public String cancelRequest(HttpSession session,@PathVariable("id")Long projId , Model model) {
+		Long Programmer_id = (Long) session.getAttribute("programmerId");
+		Programmer thisProg = programmerService.find(Programmer_id);
+		Project thisProject= ProjectServ.find(projId);
+		thisProject.getRequests().remove(thisProg);
+		ProjectServ.update(thisProject);
+		return "redirect:/programmers/Dashboard";
+		
+	}
+>>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
 
 }
 

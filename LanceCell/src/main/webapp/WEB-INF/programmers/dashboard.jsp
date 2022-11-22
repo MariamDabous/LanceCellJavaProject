@@ -34,9 +34,17 @@
 <tr>
 <td><a href="/programmers/show/${thisProject.id}">${thisProject.title}</a></td>
 <td>${thisProject.owner.firstName}${thisProject.owner.lastName}</td>
+<<<<<<< HEAD
 <td><a href="/programmers/showTeam/${thisProject.id}">Show Team</a></td>
 <td><a href="/programmers/joinRequest/${thisProject.id}">Request to join</a></td>
+=======
+<td><a href="/projects/showTeam/${thisProject.id}">Show Team</a></td>
+<td>
+>>>>>>> a4c631c51a1c1cbfeaddf06571891ea213550400
 
+<form:form action="/programmers/joinRequest/${thisProject.id}" method="post">
+<input type="submit" value="Join Team"/>
+</form:form>
 </tr>
 </c:forEach>
 </table>
@@ -50,11 +58,33 @@
 <th>Team</th>
 </tr>
 </thead>
-<c:forEach var="thisProgProject" items="${thisProgProject}">
+<c:forEach var="thisProgProject" items="${sentRequests}">
 <tr>
 <td><a href="/projects/show/${thisProgProject.id}">${thisProgProject.title}</a></td>
 <td>${thisProgProject.owner.firstName}${thisProgProject.owner.lastName}</td>
-<td><a href="/projects/showTeam/${thisProgProject.id}">Show Team</a></td>
+<td><a href="/projects/showTeam/${thisProgProject.id}"></a></td>
+</tr>
+</c:forEach>
+</table>
+
+<h2>My Project: </h2>
+<table>
+<thead>
+<tr>
+<th>Project Name </th>
+<th>Owner</th>
+<th>Team</th>
+</tr>
+</thead>
+<c:forEach var="request" items="${sentRequests}">
+<tr>
+<td><a href="/projects/show/${request.id}">${request.title}</a></td>
+<td>${request.owner.firstName}${request.owner.lastName}</td>
+<td>
+<form:form action="/programmers/deleteRequest/${request.id}" method="delete">
+<input type="submit" value="Leave"/>
+</form:form>
+</td>
 </tr>
 </c:forEach>
 </table>
