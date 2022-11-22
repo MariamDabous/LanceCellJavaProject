@@ -49,8 +49,8 @@
                     <div class="p-4" style="background-color: #f8f9fa;">
                       <p class="font-italic mb-1">Name : ${thisProg.email}</p>
                       <p class="font-italic mb-1">Phone Number : ${thisProg.phoneNumber }</p>
-                      <p class="font-italic mb-1">LinkedIn : ${thisProg.linkedIn }</p>
-                      <p class="font-italic mb-0">GitHub : ${thisProg.github}</p>
+                      <p class="font-italic mb-1">LinkedIn : <a href="https://www.linkedin.com/in/${thisProg.linkedIn}">${thisProg.linkedIn }</a></p>
+                      <p class="font-italic mb-0">GitHub : <a href="https://www.github.com/${thisProg.github}">${thisProg.github}</a></p>
                     </div>
                   </div>
 
@@ -109,7 +109,7 @@
       $.each(data, function(i, status) {
         statusHTML += '<tr>';
         statusHTML += '<td>' + status.name + '</td>';
-        statusHTML += '<td>' + status.html_url + '</td>';
+        statusHTML += '<td><a href="' + status.html_url + '">'+ status.html_url +'</td>';
         statusHTML += '<td>' + status.language + '</td>';
         statusHTML += '</tr>';
       });
