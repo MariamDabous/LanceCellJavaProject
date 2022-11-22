@@ -83,6 +83,8 @@ public class ProjectController {
 			model.addAttribute("categories", ProjectCategory.values());
 	    	Project project = projectService.find(id);
 	        model.addAttribute("project", project);
+
+			model.addAttribute("languages", Language.values());
 	        return "/projects/EditProject.jsp";
 	    }
 	   @PostMapping("/edit/{id}")
@@ -90,6 +92,7 @@ public class ProjectController {
 			Long owner_id = (Long) session.getAttribute("ownerId");
 	    	if (result.hasErrors()) {
 	    		model.addAttribute("categories", ProjectCategory.values());
+	    		model.addAttribute("languages", Language.values());
 	            return "projects/EditProject.jsp";
 	        } else {
 	        	projectService.update(project);
