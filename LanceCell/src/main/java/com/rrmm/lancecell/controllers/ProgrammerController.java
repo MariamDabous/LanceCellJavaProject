@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
@@ -50,6 +52,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}
@@ -64,6 +69,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}
@@ -95,6 +103,25 @@ public class ProgrammerController {
 	        model.addAttribute("AllProjects" , ProjectServ.allProjects());
 	        model.addAttribute("thisProgProject" , thisProg.getProject());
 	        model.addAttribute("sentRequests", thisProg.getSentRequests());
+	        model.addAttribute("languages", Language.values());
+	        model.addAttribute("proj",thisProg.getProject());
+	        return "programmers/dashboard.jsp";
+	    }
+	        else {
+	            return "redirect:/";
+	        }
+	}
+	
+	@GetMapping("/search")
+	public String ProgSearch(Model model,@RequestParam("language")Language lang , HttpSession session) {
+		if (session.getAttribute("programmerId") != null) {
+	        Long Programmer_id = (Long) session.getAttribute("programmerId");
+	        Programmer thisProg = programmerService.find(Programmer_id);
+	        model.addAttribute("thisProg", thisProg);
+	        model.addAttribute("AllProjects" , ProjectServ.getProjectsByLanguage(lang));
+	        model.addAttribute("thisProgProject" , thisProg.getProject());
+	        model.addAttribute("sentRequests", thisProg.getSentRequests());
+	        model.addAttribute("languages", Language.values());
 	        return "programmers/dashboard.jsp";
 	    }
 	        else {
@@ -141,6 +168,7 @@ public class ProgrammerController {
 		return "redirect:/programmers/Dashboard";
 		
 	}
+
 
 
 }

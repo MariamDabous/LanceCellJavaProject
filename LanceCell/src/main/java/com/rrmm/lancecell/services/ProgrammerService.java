@@ -10,62 +10,78 @@ import org.springframework.validation.BindingResult;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.repositories.ProgrammerRepository;
 
 @Service
 public class ProgrammerService {
 	@Autowired
 	ProgrammerRepository programmerRepository;
-	
 
 	public Programmer find(Long id) {
 		Optional<Programmer> opProgrammer = programmerRepository.findById(id);
-		if(opProgrammer.isPresent()) {
+		if (opProgrammer.isPresent()) {
 			return opProgrammer.get();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
+
 	public Programmer register(Programmer newProgrammer, BindingResult result) {
-		if(programmerRepository.findByEmail(newProgrammer.getEmail()).isPresent()) {
-			result.rejectValue( "email", "Unique", "This email is already in use!");
+		if (programmerRepository.findByEmail(newProgrammer.getEmail()).isPresent()) {
+			result.rejectValue("email", "Unique", "This email is already in use!");
 		}
-		if(!newProgrammer.getPassword().equals(newProgrammer.getConfirm())) {
+		if (!newProgrammer.getPassword().equals(newProgrammer.getConfirm())) {
 			result.rejectValue("confirm", "Matches", "The confirm pwd must match pwd!");
 		}
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return null;
-		}
-		else {
+		} else {
 			String hashedPwd = BCrypt.hashpw(newProgrammer.getPassword(), BCrypt.gensalt());
 			newProgrammer.setPassword(hashedPwd);
 			return programmerRepository.save(newProgrammer);
 		}
 	}
-	
-	public Programmer login(LoginUser newLogin,BindingResult result) {
-		if(result.hasErrors()) {
+
+	public Programmer login(LoginUser newLogin, BindingResult result) {
+		if (result.hasErrors()) {
 			return null;
 		}
 		Optional<Programmer> potentialProgrammer = programmerRepository.findByEmail(newLogin.getEmail());
-		if(!potentialProgrammer.isPresent()) {
+		if (!potentialProgrammer.isPresent()) {
 			result.rejectValue("email", "Unique", "Email or Pwd wrong");
 			return null;
 		}
 		Programmer user = potentialProgrammer.get();
-		if(!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+		if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
 			result.rejectValue("password", "Matches", "Email or Pwd wrong");
 			return null;
 		}
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return null;
-		}
-		else {
+		} else {
 			return user;
 		}
 	}
-	 public List<Programmer> allProjects() {
-	     return programmerRepository.findAll();
-	 }
+
+	public List<Programmer> allProgramers() {
+		return programmerRepository.findAll();
+	}
+
+	public Programmer update(Programmer prog) {
+		Optional<Programmer> opProg = programmerRepository.findById(prog.getId());
+		if (opProg.isPresent()) {
+			return programmerRepository.save(prog);
+		} else {
+			return null;
+		}
+	}
+
+	public Programmer create(Programmer prog) {
+		return programmerRepository.save(prog);
+	}
+
+	public void delete(Programmer prog) {
+		programmerRepository.delete(prog);
+	}
 }

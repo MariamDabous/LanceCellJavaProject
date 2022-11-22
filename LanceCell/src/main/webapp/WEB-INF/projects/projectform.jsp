@@ -18,12 +18,15 @@
     <title>Document</title>
 </head>
 <body style="font-family: cursive">
-	<div style="margin-left: 15%; margin-bottom: 50px; margin-top: 30px">
-		<h2>Create Project</h2>
+	
 		<a style="margin-left: 17%; font-size: 15px"
 			href="/projects/Dashboard">Dash board</a>
-	</div>
-
+	
+<div class="card text-center" style="width : 550px;margin-left : 28%;margin-top: 5%;border: 2px solid rgb(178, 173, 173);">
+        <div class="card-header">
+          <h2>Create Project</h2>
+        </div>
+        <div class="card-body">
 	<form:form action="/projects/add" method="post"
 		modelAttribute="project" style="width : 400px;margin-left : 15%;">
 		<div class="form-group">
@@ -35,7 +38,7 @@
 		<div class="form-group">
 			<form:label path="description">Description: </form:label>
 			<form:errors path="description" />
-			<form:textarea path="description" type="text" class="form-control"></form:textarea>
+			<form:textarea path="description" class="form-control"></form:textarea>
 		</div>
 		<div class="form-group">
 			<form:label path="dueDate">Due Date:</form:label>
@@ -44,7 +47,7 @@
 		</div>
 		<div class="form-group">
 		<form:label path="category">Category:</form:label>
-			<form:select path="category">
+			<form:select path="category" class="form-control">
 				<c:forEach var="category" items="${categories}">
 					<form:option value="${category }">${category.name}</form:option>
 				</c:forEach>
@@ -52,7 +55,7 @@
 		</div>
 		<div class="form-group">
 <form:label path="language"> Language:</form:label>
-			<form:select path="language">
+			<form:select path="language" class="form-control">
 				<c:forEach var="language" items="${languages}">
 					<form:option value="${language }">${language.name}</form:option>
 				</c:forEach>
@@ -61,14 +64,13 @@
 		<form:input type="hidden" path="owner" value="${ownerId}" />
 
 
-
-		<input style="margin-top: 10px" type="submit" class="btn btn-primary"
-			value="Create">
+		<input style="margin-top: 10px" type="submit" class="btn btn-primary" value="Create">
+		            <p><a style="margin-top: 5%; font-size: 15px" class="btn btn-danger"  href="/projects/Dashboard">Dashboard</a></p> 
+		
 	</form:form>
-        
-        </div>
-        
       </div>
+      </div>  
+       
     
 </body>
 </html>

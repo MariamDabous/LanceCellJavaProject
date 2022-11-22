@@ -47,7 +47,6 @@ public class Programmer {
     private String password;
     
     @Transient
-    @NotEmpty(message="Confirm Password is required!")
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
     
@@ -84,7 +83,7 @@ public class Programmer {
     @JoinColumn(name="project_id")
     private Project project ;
     
-	private Boolean isApproved = false ;
+	private boolean isApproved = false   ;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -191,11 +190,11 @@ public class Programmer {
 		this.project = project;
 	}
 
-	public Boolean getIsApproved() {
+	public boolean getIsApproved() {
 		return isApproved;
 	}
 
-	public void setIsApproved(Boolean isApproved) {
+	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
 

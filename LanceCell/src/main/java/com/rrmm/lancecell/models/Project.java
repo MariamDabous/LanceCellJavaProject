@@ -18,6 +18,8 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -32,7 +34,7 @@ public class Project {
     @Size(min=3, max=30, message="Title must be between 3 and 30 characters")
     private String title;
     @NotEmpty(message="description is required!")
-    @Size(min=3, max=30, message="description must be between 3 and 250 characters")
+    @Length(min=3, max=250, message="description must be between 3 and 250 characters")
     private String description ;
     @Future(message="Date must be in Future")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

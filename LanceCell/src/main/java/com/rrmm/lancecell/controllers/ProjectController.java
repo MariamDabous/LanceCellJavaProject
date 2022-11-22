@@ -1,5 +1,7 @@
 package com.rrmm.lancecell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.models.ProjectCategory;
 import com.rrmm.lancecell.services.OwnerService;
@@ -80,6 +83,8 @@ public class ProjectController {
 			model.addAttribute("categories", ProjectCategory.values());
 	    	Project project = projectService.find(id);
 	        model.addAttribute("project", project);
+
+			model.addAttribute("languages", Language.values());
 	        return "/projects/EditProject.jsp";
 	    }
 	   @PostMapping("/edit/{id}")
@@ -87,6 +92,7 @@ public class ProjectController {
 			Long owner_id = (Long) session.getAttribute("ownerId");
 	    	if (result.hasErrors()) {
 	    		model.addAttribute("categories", ProjectCategory.values());
+	    		model.addAttribute("languages", Language.values());
 	            return "projects/EditProject.jsp";
 	        } else {
 	        	projectService.update(project);
@@ -125,5 +131,18 @@ public class ProjectController {
 				return "redirect:/owners";
 			}
 		}
+		@GetMapping("/requests")
+		public String showRequests(HttpSession session, Model model) {
+			Owner thisOwner = ownerService.find((Long)session.getAttribute("ownerId"));
+			model.addAttribute("myProjects", thisOwner.getMyProjects());
+			return "/owners/requests.jsp";
+		}
+		@GetMapping("/showTeam/{id}")
+		public String ShowTeam(@PathVariable("id") Long id,Model model) {
+			Project thisProject= projectService.find(id);
+			model.addAttribute("thisProjectTeam" , thisProject.getProgrammmers());
+			return "projects/ShowTeam.jsp";
+		}
+		
 }
 
