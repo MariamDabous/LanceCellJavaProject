@@ -9,11 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
+import com.rrmm.lancecell.models.Owner;
 import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.services.LanguageService;
 import com.rrmm.lancecell.services.ProgrammerService;
 import com.rrmm.lancecell.services.ProjectService;
@@ -104,14 +107,23 @@ public class ProgrammerController {
 	        }
 	}
 	
-	@GetMapping("/Profile")
-	public String ShowProgrammer(Model model, HttpSession session) {
-		Long Programmer_id = (Long) session.getAttribute("programmerId");
-		Programmer thisProg = ProgServ.find(Programmer_id);
+	@GetMapping("/Profile/{id}")
+	public String ShowProgrammer(Model model, HttpSession session,@PathVariable("id") Long id) {
+		Programmer thisProg = ProgServ.find(id);
 		model.addAttribute("thisProg", thisProg);
 		return "programmers/profile.jsp";
 	
 	}
+	 @GetMapping("/show/{id}")
+	    public String showBook(Model model , @PathVariable("id") Long id,HttpSession session){
+	    	Long prog_id = (Long) session.getAttribute("programmerId");
+	    	Programmer Prog = programmerService.find(prog_id);
+	    	model.addAttribute("logged", Prog);
+	        Project project = ProjectServ.find(id);
+	        model.addAttribute("project", project);
+	    	return "projects/ViewProject.jsp";
+	    }
+
 
 }
 

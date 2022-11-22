@@ -15,6 +15,7 @@
 </head>
 <body>
 <h1>Welcome ${thisProg.firstName } ${thisProg.lastName}</h1>
+<h3><a href="/programmers/Profile/${thisProg.id}">My Profile</a></h3>
 <h2>Choose a language</h2>
 
 <h2>All Projects : </h2>
@@ -31,10 +32,10 @@
 
 <c:forEach var="thisProject" items="${AllProjects}">
 <tr>
-<td><a href="/projects/show/${thisProject.id}">${thisProject.title}</a></td>
+<td><a href="/programmers/show/${thisProject.id}">${thisProject.title}</a></td>
 <td>${thisProject.owner.firstName}${thisProject.owner.lastName}</td>
-<td><a href="/projects/showTeam/${thisProject.id}">Show Team</a></td>
-<td><a href="/projects/joinRequest/${thisProject.id}">Request to join</a></td>
+<td><a href="/programmers/showTeam/${thisProject.id}">Show Team</a></td>
+<td><a href="/programmers/joinRequest/${thisProject.id}">Request to join</a></td>
 
 </tr>
 </c:forEach>

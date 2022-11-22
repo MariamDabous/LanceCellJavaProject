@@ -16,7 +16,7 @@
 <body style="font-family: cursive">
 	<div style="margin-left: 15%; margin-bottom: 50px; margin-top: 30px">
 		<h2>Create Project</h2>
-		<a style="margin-left: 17%; font-size: 15px" href="/">Dash board</a>
+		<a style="margin-left: 17%; font-size: 15px" href="/projects/Dashboard">Dash board</a>
 	</div>
 
 	<form:form action="/projects/add" method="post"
