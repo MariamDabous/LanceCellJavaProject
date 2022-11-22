@@ -83,7 +83,7 @@ public class Programmer {
     @JoinColumn(name="project_id")
     private Project project ;
     
-	private Boolean isApproved = false ;
+	private boolean isApproved = false   ;
     
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -190,11 +190,11 @@ public class Programmer {
 		this.project = project;
 	}
 
-	public Boolean getIsApproved() {
+	public boolean getIsApproved() {
 		return isApproved;
 	}
 
-	public void setIsApproved(Boolean isApproved) {
+	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
 

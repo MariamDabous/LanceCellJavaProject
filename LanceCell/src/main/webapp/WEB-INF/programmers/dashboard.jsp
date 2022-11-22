@@ -45,7 +45,7 @@
 				<td><a href="/programmers/show/${thisProject.id}">${thisProject.title}</a></td>
 				<td>${thisProject.owner.firstName}${thisProject.owner.lastName}</td>
 
-				<td><a href="/programmers/showTeam/${thisProject.id}">Show
+				<td><a href="/projects/showTeam/${thisProject.id}">Show
 						Team</a></td>
 				<td><c:choose>
 						<c:when test="${thisProject.getRequests().contains(thisProg)}">
@@ -83,13 +83,18 @@
 				<th>Team</th>
 			</tr>
 		</thead>
+		<c:choose>
+		<c:when test="${thisProg.project != null}">
 		<tr>
-			<td><a href="/projects/show/${thisProg.project.id}">${thisProg.project.title}</a></td>
+		
+			<td><a href="/projects/show/${thisProg.project.id}">${proj.title}</a></td>
 			<td>${thisProg.project.owner.firstName}
 				${thisProg.project.owner.lastName}</td>
-			<td><a href="/projects/showTeam/${thisProg.project.id}">Show
-					Team</a></td>
+			<td><a href="/projects/showTeam/${thisProg.project.id}">ShowTeam</a></td>
 		</tr>
+		</c:when>
+		<c:otherwise><tr></tr></c:otherwise>
+		</c:choose>
 	</table>
 
 	<h2>My Requests:</h2>
@@ -103,7 +108,7 @@
 		</thead>
 		<c:forEach var="request" items="${sentRequests}">
 			<tr>
-				<td><a href="/projects/show/${request.id}">${request.title}</a></td>
+				<td><a href="/programmers/show/${request.id}">${request.title}</a></td>
 				<td>${request.owner.firstName}${request.owner.lastName}</td>
 				<td><form:form
 						action="/programmers/deleteRequest/${request.id}" method="delete">

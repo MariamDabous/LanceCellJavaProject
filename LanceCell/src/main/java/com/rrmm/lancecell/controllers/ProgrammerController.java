@@ -52,6 +52,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}
@@ -66,6 +69,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}
@@ -98,6 +104,7 @@ public class ProgrammerController {
 	        model.addAttribute("thisProgProject" , thisProg.getProject());
 	        model.addAttribute("sentRequests", thisProg.getSentRequests());
 	        model.addAttribute("languages", Language.values());
+	        model.addAttribute("proj",thisProg.getProject());
 	        return "programmers/dashboard.jsp";
 	    }
 	        else {
@@ -161,12 +168,7 @@ public class ProgrammerController {
 		return "redirect:/programmers/Dashboard";
 		
 	}
-	@GetMapping("/showTeam/{id}")
-	public String ShowTeam(@PathVariable("id") Long id,Model model) {
-		Project thisProject= ProjectServ.find(id);
-		model.addAttribute("thisProjectTeam" , thisProject.getProgrammmers());
-		return "projects/ShowTeam.jsp";
-	}
+
 
 
 }
