@@ -134,6 +134,12 @@ public class ProjectController {
 			model.addAttribute("myProjects", thisOwner.getMyProjects());
 			return "/owners/requests.jsp";
 		}
+		@GetMapping("/showTeam/{id}")
+		public String ShowTeam(@PathVariable("id") Long id,Model model) {
+			Project thisProject= projectService.find(id);
+			model.addAttribute("thisProjectTeam" , thisProject.getProgrammmers());
+			return "projects/ShowTeam.jsp";
+		}
 		
 }
 
