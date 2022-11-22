@@ -103,7 +103,7 @@
 			<td><a href="/projects/show/${thisProg.project.id}">${proj.title}</a></td>
 			<td>${thisProg.project.owner.firstName}
 				${thisProg.project.owner.lastName}</td>
-			<td><a href="/projects/showTeam/${thisProg.project.id}">ShowTeam</a></td>
+			<td><a href="/programmers/showTeam/${thisProg.project.id}">ShowTeam</a></td>
 		</tr>
 		</c:when>
 		<c:otherwise><tr></tr></c:otherwise>

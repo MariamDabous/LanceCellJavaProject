@@ -21,6 +21,7 @@
 
 </head>
 <body>
+
 	<div>
 		<h1>${project.title}</h1>
 
@@ -78,7 +79,9 @@
 				</table>
 			</div>
 		</div>
+		<p><a style="margin-top: 10%; font-size: 15px;margin-left:10%" class="btn btn-danger"   href="/projects/Dashboard">Dashboard</a></p>
 	</div>
+	
 	<script src="/js/node.js">
 		
 	</script>
