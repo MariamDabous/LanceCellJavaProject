@@ -50,11 +50,9 @@
 			</form:select>
 		</div>
 
-  
-
-
             <input style="margin-top:10px" type="submit" class="btn btn-primary" value="Update">
     </form:form>
+    </div>
 
 </body>
 </html>
