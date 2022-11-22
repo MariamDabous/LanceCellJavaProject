@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="css/showstyle.css">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     
     <title>Document</title>
 </head>
@@ -62,33 +64,5 @@
                  </div>
              </div>
          </div>
-         <script>
-         let tabSwitchers = document.querySelectorAll('[target-wrapper]')
-         tabSwitchers.forEach(item => {
-             item.addEventListener('click', (e)=> {
-                 let currentWrapperId = item.getAttribute('target-wrapper')
-                 let currentWrapperTargetId = item.getAttribute('target-tab')
-                 
-                 let currentWrapper =  document.querySelector(`#${currentWrapperId}`)
-                 let currentWrappersTarget = document.querySelector(`#${currentWrapperTargetId}`)
-
-                 let allCurrentTabItem = document.querySelectorAll(`[target-wrapper='${currentWrapperId}']`)
-                 let allCurrentWrappersTarget = document.querySelectorAll(`#${currentWrapperId} .tab-content`)
-               
-                 if(currentWrappersTarget) {
-                     if(!currentWrappersTarget.classList.contains('active')) {
-                         allCurrentWrappersTarget.forEach(tabItem => {
-                             tabItem.classList.remove('active')
-                         })
-                         allCurrentTabItem.forEach(item => {
-                             item.classList.remove('active')
-                         })
-                         item.classList.add('active')
-                         currentWrappersTarget.classList.add('active')
-                     }
-                 }
-             })
-         })
-         </script>
 </body>
 </html>
