@@ -19,7 +19,7 @@
 <body>
 	<header class="container">
 		<h1 class="text-center text-primary">Welcome!</h1>
-		<a href="owners">Are you A Owner ? Registere and Login Here</a>
+		<a href="owners">Are you A Owner ? Register and Login Here</a>
 	</header>
 	<main class="col" style="width:800px;margin-left:20%">
 		<div class="row border mx-5 my-5">

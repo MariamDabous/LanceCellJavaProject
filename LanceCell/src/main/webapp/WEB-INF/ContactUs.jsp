@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanceCell ContactUs</title>
  <link rel="stylesheet" href="css/bootstrap.min.css">
  <link rel="stylesheet" href="css/style.css">
 <style>
@@ -74,10 +74,9 @@
 
 <body>
 <nav class="navb">
-<h1 class="Lance"> <p><span class="l">L</span>anceCell <span></p></span></h1>
+<h1 class="Lance"><a href="/" style=" text-decoration: none; color:white;"> <span class="l">L</span>anceCell</a></h1>
 <div class="tabs">
-<a class="anch" href="#">Login</a>
-<a class="anch" href="#">Registration</a>
+<a class="anch" href="#">Login/Register</a>
 </div>
 </nav>
     <div class="main">
