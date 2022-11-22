@@ -68,4 +68,8 @@ public class ProgrammerService {
 	 public List<Programmer> allProjects() {
 	     return programmerRepository.findAll();
 	 }
+	 
+	 public Programmer update(Programmer programmer) {
+		 return programmerRepository.save(programmer);
+	 }
 }

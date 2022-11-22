@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
@@ -95,6 +97,24 @@ public class ProgrammerController {
 	        model.addAttribute("AllProjects" , ProjectServ.allProjects());
 	        model.addAttribute("thisProgProject" , thisProg.getProject());
 	        model.addAttribute("sentRequests", thisProg.getSentRequests());
+	        model.addAttribute("languages", Language.values());
+	        return "programmers/dashboard.jsp";
+	    }
+	        else {
+	            return "redirect:/";
+	        }
+	}
+	
+	@GetMapping("/search")
+	public String ProgSearch(Model model,@RequestParam("language")Language lang , HttpSession session) {
+		if (session.getAttribute("programmerId") != null) {
+	        Long Programmer_id = (Long) session.getAttribute("programmerId");
+	        Programmer thisProg = programmerService.find(Programmer_id);
+	        model.addAttribute("thisProg", thisProg);
+	        model.addAttribute("AllProjects" , ProjectServ.getProjectsByLanguage(lang));
+	        model.addAttribute("thisProgProject" , thisProg.getProject());
+	        model.addAttribute("sentRequests", thisProg.getSentRequests());
+	        model.addAttribute("languages", Language.values());
 	        return "programmers/dashboard.jsp";
 	    }
 	        else {
@@ -140,6 +160,12 @@ public class ProgrammerController {
 		ProjectServ.update(thisProject);
 		return "redirect:/programmers/Dashboard";
 		
+	}
+	@GetMapping("/showTeam/{id}")
+	public String ShowTeam(@PathVariable("id") Long id,Model model) {
+		Project thisProject= ProjectServ.find(id);
+		model.addAttribute("thisProjectTeam" , thisProject.getProgrammmers());
+		return "projects/ShowTeam.jsp";
 	}
 
 

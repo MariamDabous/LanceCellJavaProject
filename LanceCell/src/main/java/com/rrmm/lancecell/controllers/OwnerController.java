@@ -9,13 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.services.OwnerService;
 import com.rrmm.lancecell.services.ProgrammerService;
+import com.rrmm.lancecell.services.ProjectService;
 @Controller
 @RequestMapping("/owners")
 public class OwnerController {
@@ -23,6 +27,8 @@ public class OwnerController {
 	OwnerService ownerService;
 	@Autowired
 	ProgrammerService programmerService;
+	@Autowired
+	ProjectService projectService;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
@@ -90,6 +96,24 @@ public class OwnerController {
 	        else {
 	            return "redirect:/";
 	        }
+	}
+	
+	@GetMapping("/accept/{projId}/{progId}")
+	public String progAccept(HttpSession session,@PathVariable("projId")Long projId, @PathVariable("progId")Long progId, Model model) {
+		Project thisProj=projectService.find(projId);
+		Programmer thisProg=programmerService.find(progId);
+		thisProg.setProject(thisProj);
+		thisProj.getRequests().remove(thisProg);
+		programmerService.update(thisProg);
+		return "redirect:/projects/requests";
+	}
+	@GetMapping("/reject/{projId}/{progId}")
+	public String progReject(HttpSession session,@PathVariable("projId")Long projId, @PathVariable("progId")Long progId, Model model) {
+		Project thisProj=projectService.find(projId);
+		Programmer thisProg=programmerService.find(progId);
+		thisProj.getRequests().remove(thisProg);
+		projectService.update(thisProj);
+		return "redirect:/projects/requests";
 	}
 
 

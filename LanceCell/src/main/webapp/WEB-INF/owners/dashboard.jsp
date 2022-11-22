@@ -39,6 +39,6 @@
 </table>
 <br><br>
 <a href="/projects/add">Add Project</a>
-<a href="/projects/requests/${thisOwner.id}">Requests</a>
+<a href="/projects/requests">Requests</a>
 </body>
 </html>

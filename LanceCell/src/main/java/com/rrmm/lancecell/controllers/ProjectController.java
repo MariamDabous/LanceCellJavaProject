@@ -1,5 +1,7 @@
 package com.rrmm.lancecell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.models.ProjectCategory;
 import com.rrmm.lancecell.services.OwnerService;
@@ -125,5 +128,12 @@ public class ProjectController {
 				return "redirect:/owners";
 			}
 		}
+		@GetMapping("/requests")
+		public String showRequests(HttpSession session, Model model) {
+			Owner thisOwner = ownerService.find((Long)session.getAttribute("ownerId"));
+			model.addAttribute("myProjects", thisOwner.getMyProjects());
+			return "/owners/requests.jsp";
+		}
+		
 }
 
