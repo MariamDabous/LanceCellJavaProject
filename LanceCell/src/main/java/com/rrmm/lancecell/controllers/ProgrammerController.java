@@ -54,6 +54,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}
@@ -68,6 +71,9 @@ public class ProgrammerController {
 		else {
 			session.setAttribute("programmerId", programmer.getId());
 			session.setAttribute("loggedProgrammer", programmer);
+			if(programmer.getIsApproved() == false) {
+				return "/programmers/notApprove.jsp";
+			}
 			return "redirect:/programmers/home";
 		}
 	}

@@ -17,9 +17,9 @@
 <nav class="navb">
 <h1 class="Lance"> <span class="l">L</span>anceCell <span><img class="logo" src="images/logo.jpg" alt="Logo" ></span></h1>
 <div class="tabs">
-<a class="anch" href="#">Login</a>
-<a class="anch" href="#">Registration</a>
-<a class="anch" href="#">Contact Us</a>
+<a class="anch" href="/owners">Login</a>
+<a class="anch" href="/owners">Registration</a>
+<a class="anch" href="/contactUs">Contact Us</a>
 </div>
 </nav>
 <div>

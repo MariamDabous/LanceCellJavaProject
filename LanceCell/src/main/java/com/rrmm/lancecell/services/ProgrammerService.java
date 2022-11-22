@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 
 import com.rrmm.lancecell.models.LoginUser;
 import com.rrmm.lancecell.models.Programmer;
+import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.repositories.ProgrammerRepository;
 
 @Service
@@ -65,7 +66,22 @@ public class ProgrammerService {
 			return user;
 		}
 	}
-	 public List<Programmer> allProjects() {
+	 public List<Programmer> allProgramers() {
 	     return programmerRepository.findAll();
 	 }
-}
+		public Programmer update(Programmer prog) {
+			Optional<Programmer> opProg = programmerRepository.findById(prog.getId());
+			if(opProg.isPresent()) {
+				return programmerRepository.save(prog);
+			}
+			else {
+				return null;
+			}
+		}
+		public Programmer create(Programmer prog) {
+			return programmerRepository.save(prog);
+		}
+		public void delete(Programmer prog) {
+			programmerRepository.delete(prog);
+		}
+		}
