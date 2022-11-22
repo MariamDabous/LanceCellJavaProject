@@ -86,13 +86,6 @@ public class Programmer {
     
 	private Boolean isApproved = false ;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "programmers_languages", 
-            joinColumns = @JoinColumn(name = "programmer_id"), 
-            inverseJoinColumns = @JoinColumn(name = "language_id")
-        )
-    private List<Language> languages;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -204,14 +197,6 @@ public class Programmer {
 
 	public void setIsApproved(Boolean isApproved) {
 		this.isApproved = isApproved;
-	}
-
-	public List<Language> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(List<Language> languages) {
-		this.languages = languages;
 	}
 
 	public List<Project> getSentRequests() {

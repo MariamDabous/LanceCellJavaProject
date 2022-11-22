@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rrmm.lancecell.models.LoginUser;
-import com.rrmm.lancecell.models.Owner;
 import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
-import com.rrmm.lancecell.services.LanguageService;
 import com.rrmm.lancecell.services.ProgrammerService;
 import com.rrmm.lancecell.services.ProjectService;
 
@@ -29,8 +27,6 @@ public class ProgrammerController {
 	ProgrammerService programmerService;
 	@Autowired
     ProjectService ProjectServ;
-	@Autowired
-    LanguageService LanguageServ;
 	
 	@GetMapping("")
 	public String index(HttpSession session, Model model) {
@@ -99,7 +95,6 @@ public class ProgrammerController {
 	        model.addAttribute("AllProjects" , ProjectServ.allProjects());
 	        model.addAttribute("thisProgProject" , thisProg.getProject());
 	        model.addAttribute("sentRequests", thisProg.getSentRequests());
-	        model.addAttribute("AllLanguages" , LanguageServ.allLanguages());
 	        return "programmers/dashboard.jsp";
 	    }
 	        else {

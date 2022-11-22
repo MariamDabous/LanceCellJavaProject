@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.Owner;
 import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.models.ProjectCategory;
@@ -37,6 +37,7 @@ public class ProjectController {
 			return "redirect:/owners";
 		}
 		model.addAttribute("categories", ProjectCategory.values());
+		model.addAttribute("languages", Language.values());
         return "/projects/projectform.jsp";
     }
     
@@ -46,6 +47,7 @@ public class ProjectController {
 		model.addAttribute("logged", Logged);
     	if (result.hasErrors()) {
     		model.addAttribute("categories", ProjectCategory.values());
+    		model.addAttribute("languages", Language.values());
             return "projects/projectform.jsp";
         }
     	else {
@@ -83,8 +85,6 @@ public class ProjectController {
 	   @PostMapping("/edit/{id}")
 	    public String update(Model model ,@PathVariable("id") Long id,@Valid @ModelAttribute("project") Project project, BindingResult result,HttpSession session) {
 			Long owner_id = (Long) session.getAttribute("ownerId");
-
-	
 	    	if (result.hasErrors()) {
 	    		model.addAttribute("categories", ProjectCategory.values());
 	            return "projects/EditProject.jsp";
