@@ -1,5 +1,7 @@
 package com.rrmm.lancecell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,10 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.Owner;
+import com.rrmm.lancecell.models.Programmer;
 import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.models.ProjectCategory;
 import com.rrmm.lancecell.services.OwnerService;
@@ -37,6 +40,7 @@ public class ProjectController {
 			return "redirect:/owners";
 		}
 		model.addAttribute("categories", ProjectCategory.values());
+		model.addAttribute("languages", Language.values());
         return "/projects/projectform.jsp";
     }
     
@@ -46,6 +50,7 @@ public class ProjectController {
 		model.addAttribute("logged", Logged);
     	if (result.hasErrors()) {
     		model.addAttribute("categories", ProjectCategory.values());
+    		model.addAttribute("languages", Language.values());
             return "projects/projectform.jsp";
         }
     	else {
@@ -83,8 +88,6 @@ public class ProjectController {
 	   @PostMapping("/edit/{id}")
 	    public String update(Model model ,@PathVariable("id") Long id,@Valid @ModelAttribute("project") Project project, BindingResult result,HttpSession session) {
 			Long owner_id = (Long) session.getAttribute("ownerId");
-
-	
 	    	if (result.hasErrors()) {
 	    		model.addAttribute("categories", ProjectCategory.values());
 	            return "projects/EditProject.jsp";
@@ -125,5 +128,18 @@ public class ProjectController {
 				return "redirect:/owners";
 			}
 		}
+		@GetMapping("/requests")
+		public String showRequests(HttpSession session, Model model) {
+			Owner thisOwner = ownerService.find((Long)session.getAttribute("ownerId"));
+			model.addAttribute("myProjects", thisOwner.getMyProjects());
+			return "/owners/requests.jsp";
+		}
+		@GetMapping("/showTeam/{id}")
+		public String ShowTeam(@PathVariable("id") Long id,Model model) {
+			Project thisProject= projectService.find(id);
+			model.addAttribute("thisProjectTeam" , thisProject.getProgrammmers());
+			return "projects/ShowTeam.jsp";
+		}
+		
 }
 

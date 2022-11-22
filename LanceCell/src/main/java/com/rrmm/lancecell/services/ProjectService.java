@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rrmm.lancecell.models.Language;
 import com.rrmm.lancecell.models.Project;
 import com.rrmm.lancecell.repositories.ProjectRepository;
 
@@ -43,4 +44,7 @@ public class ProjectService {
 	     return projectRepository.findAll();
 	 }
 	
+	 public List<Project> getProjectsByLanguage(Language lang){
+		 return projectRepository.findAllByLanguage(lang);
+	 }
 }

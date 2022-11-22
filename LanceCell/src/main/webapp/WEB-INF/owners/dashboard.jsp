@@ -27,7 +27,7 @@
 </tr>
 </thead>
 
-
+	
 <c:forEach var="thisProject" items="${AllProjects}">
 <tr>
 <td><a href="/projects/show/${thisProject.id}">${thisProject.title}</a></td>
@@ -39,8 +39,6 @@
 </table>
 <br><br>
 <a href="/projects/add">Add Project</a>
-<form action="projects/requests/${thisOwner.id}">
-<input type="submit" value="Requests">
-</form>
+<a href="/projects/requests">Requests</a>
 </body>
 </html>

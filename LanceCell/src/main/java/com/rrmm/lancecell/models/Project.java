@@ -41,13 +41,7 @@ public class Project {
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<Programmer> programmmers;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "projects_languages", 
-            joinColumns = @JoinColumn(name = "project_id"), 
-            inverseJoinColumns = @JoinColumn(name = "language_id")
-        )
-    private List<Language> languages;
+    
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
@@ -70,6 +64,9 @@ public class Project {
     
     @NotNull
     private ProjectCategory category;
+    
+    @NotNull
+    private Language language;
 
 	@PrePersist
 	 protected void onCreate(){
@@ -141,14 +138,6 @@ public class Project {
 	}
 	
 
-	public List<Language> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(List<Language> languages) {
-		this.languages = languages;
-	}
-
 	public Owner getOwner() {
 		return owner;
 	}
@@ -169,6 +158,12 @@ public class Project {
 	}
 	public void setCategory(ProjectCategory category) {
 		this.category = category;
+	}
+	public Language getLanguage() {
+		return language;
+	}
+	public void setLanguage(Language language) {
+		this.language = language;
 	}
     
     

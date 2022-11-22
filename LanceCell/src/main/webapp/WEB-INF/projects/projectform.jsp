@@ -8,15 +8,20 @@
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>New Project</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Document</title>
 </head>
 <body style="font-family: cursive">
 	<div style="margin-left: 15%; margin-bottom: 50px; margin-top: 30px">
 		<h2>Create Project</h2>
-		<a style="margin-left: 17%; font-size: 15px" href="/projects/Dashboard">Dash board</a>
+		<a style="margin-left: 17%; font-size: 15px"
+			href="/projects/Dashboard">Dash board</a>
 	</div>
 
 	<form:form action="/projects/add" method="post"
@@ -38,19 +43,32 @@
 			<form:input path="dueDate" type="date" class="form-control"></form:input>
 		</div>
 		<div class="form-group">
-		
+		<form:label path="category">Category:</form:label>
 			<form:select path="category">
 				<c:forEach var="category" items="${categories}">
-				<form:option value="${category }">${category.name}</form:option>
+					<form:option value="${category }">${category.name}</form:option>
 				</c:forEach>
 			</form:select>
 		</div>
-		<form:input type="hidden" path="owner" value="${ownerId}"/>
+		<div class="form-group">
+<form:label path="language"> Language:</form:label>
+			<form:select path="language">
+				<c:forEach var="language" items="${languages}">
+					<form:option value="${language }">${language.name}</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
+		<form:input type="hidden" path="owner" value="${ownerId}" />
 
 
 
-		<input style="margin-top: 10px" type="submit" class="btn btn-danger"
+		<input style="margin-top: 10px" type="submit" class="btn btn-primary"
 			value="Create">
 	</form:form>
+        
+        </div>
+        
+      </div>
+    
 </body>
 </html>
