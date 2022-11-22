@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="css/profilestyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 	<section class="h-100 gradient-custom-2">
@@ -34,7 +37,7 @@
                     </button> -->
                   </div>
                   <div class="ms-3" style="margin-top: 130px;">
-                    <h5>  Programmer Name ##</h5>
+                    <h5>  ${thisProg.firstName}${thisProg.lastName }</h5>
                   </div>
                 </div>
                 <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -44,58 +47,77 @@
                   <div class="mb-5">
                     <p class="lead fw-normal mb-1">About</p>
                     <div class="p-4" style="background-color: #f8f9fa;">
-                      <p class="font-italic mb-1">Email####</p>
-                      <p class="font-italic mb-1">Phone Number ##</p>
-                      <p class="font-italic mb-1">LinkedIn ##</p>
-                      <p class="font-italic mb-0">GitHub##</p>
+                      <p class="font-italic mb-1">Name : ${thisProg.email}</p>
+                      <p class="font-italic mb-1">Phone Number : ${thisProg.phoneNumber }</p>
+                      <p class="font-italic mb-1">LinkedIn : ${thisProg.linkedIn }</p>
+                      <p class="font-italic mb-0">GitHub : ${thisProg.github}</p>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="lead fw-normal mb-0">Projects:</p>
-                    <!-- <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p> -->
-                  </div>
-                  <table style="width:70%;" class="table table-striped table-bordered ">
-                    <thead>
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Language</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="book" items="${books}">
-                            <tr>
-                                <td>0</td>
-                                <td><a href="/books/${book.id}"><c:out value="${book.title}"></c:out></a></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                  <!-- <div class="row g-2">
-                    <div class="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                        alt="image 1" class="w-100 rounded-3">
-                    </div>
-                    <div class="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                        alt="image 1" class="w-100 rounded-3">
-                    </div>
-                  </div> -->
-                  <!-- <div class="row g-2">
-                    <div class="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                        alt="image 1" class="w-100 rounded-3">
-                    </div>
-                    <div class="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                        alt="image 1" class="w-100 rounded-3">
-                    </div>
-                  </div> -->
+
+      
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+                        <div class="container-fluid mt-3">
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid bg-info text-white">
+      <div class="container-fluid">
+        <h1 class="display-5">Github Repositories for ${thisProg.firstName }</h1>
+        <p class="lead"></p>
+      </div>
+    </div>
+    <!-- responsive table -->
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">Name</th>
+            <th scope="col">URL</th>
+            <th scope="col">Language</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr> 
+          -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- jquery cdn  -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <!-- custom js -->
+  <script>// Create a request variable and assign a new XMLHttpRequest object to it.
+    var request = new XMLHttpRequest()
+    
+    // Open a new connection, using the GET request on the URL endpoint
+    request.open('GET', 'https://api.github.com/users/${thisProg.github}/repos', true)
+    
+    request.onload = function () {
+      // Begin accessing JSON data here
+      var data = JSON.parse(this.response);
+      console.log(data);
+    
+      var statusHTML = '';
+      $.each(data, function(i, status) {
+        statusHTML += '<tr>';
+        statusHTML += '<td>' + status.name + '</td>';
+        statusHTML += '<td>' + status.html_url + '</td>';
+        statusHTML += '<td>' + status.language + '</td>';
+        statusHTML += '</tr>';
+      });
+      $('tbody').html(statusHTML);
+    }
+    
+    // Send request
+    request.send();</script>
     
 
 </body>
