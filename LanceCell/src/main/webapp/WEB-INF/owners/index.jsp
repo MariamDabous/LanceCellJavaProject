@@ -21,7 +21,7 @@
 		<h1 class="text-center text-primary">Welcome!</h1>
 		<a href="programmers">Are you A programmer ? Registere and Login Here</a>
 	</header>
-	<main class="col">
+	<main class="col" style="width:800px;margin-left:20%">
 		<div class="row border mx-5 my-5">
 			<div class="mb-3">
 				<h2>Register</h2>
