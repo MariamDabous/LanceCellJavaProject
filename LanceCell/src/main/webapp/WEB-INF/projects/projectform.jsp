@@ -8,10 +8,14 @@
 <!-- for rendering errors on PUT routes -->
 <%@ page isErrorPage="true"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>New Project</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Document</title>
 </head>
 <body style="font-family: cursive">
 	<div style="margin-left: 15%; margin-bottom: 50px; margin-top: 30px">
@@ -58,8 +62,13 @@
 
 
 
-		<input style="margin-top: 10px" type="submit" class="btn btn-danger"
+		<input style="margin-top: 10px" type="submit" class="btn btn-primary"
 			value="Create">
 	</form:form>
+        
+        </div>
+        
+      </div>
+    
 </body>
 </html>
