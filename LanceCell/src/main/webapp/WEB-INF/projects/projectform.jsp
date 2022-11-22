@@ -35,7 +35,7 @@
 		<div class="form-group">
 			<form:label path="description">Description: </form:label>
 			<form:errors path="description" />
-			<form:textarea path="description" type="text" class="form-control"></form:textarea>
+			<form:textarea path="description" class="form-control"></form:textarea>
 		</div>
 		<div class="form-group">
 			<form:label path="dueDate">Due Date:</form:label>
@@ -66,9 +66,7 @@
 			value="Create">
 	</form:form>
         
-        </div>
-        
-      </div>
+       
     
 </body>
 </html>
