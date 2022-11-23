@@ -18,29 +18,30 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div>
 <c:forEach var="project" items="${myProjects}">
-<h5>${project.title}</h5>
-<table>
-<thead>
-<tr>
-<th>Programmer Name</th>
-<th>Profile</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<c:forEach var="programmer" items="${project.requests}">
-<tr>
-<td>${programmer.firstName } ${programmer.lastName }</td>
-<td><a href="/programmers/Profile/${programmer.id }">Show Profile</a></td>
-<td><a href="/owners/accept/${project.id}/${programmer.id}">Accept</a> | <a href="/owners/reject/${project.id}/${programmer.id}">Reject</a></td>
-</tr>
-</c:forEach>
-</tbody>
+<h3 style="margin-top:2%;margin-left:7%">${project.title}</h3>
+<table style="width: 60%;margin-left: 8%;margin-top:4%" class="table table-striped table-bordered ">
+	<thead>
+		<tr>
+			<th>Programmer Name</th>
+			<th>Profile</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="programmer" items="${project.requests}">
+			<tr>
+				<td>${programmer.firstName } ${programmer.lastName }</td>
+				<td><a href="/programmers/Profile/${programmer.id }">Show Profile</a></td>
+				<td><a href="/owners/accept/${project.id}/${programmer.id}">Accept</a> | <a href="/owners/reject/${project.id}/${programmer.id}">Reject</a></td>
+			</tr>
+		</c:forEach>
+	</tbody>
 </table>
 </c:forEach>
 </div>
-   
+  <a style=" font-size: 15px;margin-left:10%" class="btn btn-danger"   href="/projects/Dashboard">Dashboard</a>
 </body>
 </html>
