@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Project</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -24,7 +24,7 @@
 
 	<div>
 		<h1>${project.title}</h1>
-
+<input type="button" value="Back" class="btn my-3" onclick="history.back()">
 		<ul>
 			<li class="tab-item active" target-wrapper="first-dynamic-table"
 				target-tab="home">Details</li>
@@ -46,7 +46,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${project.category}</td>
+							<td>${project.category.name}</td>
 
 							<td>${project.language}</td>
 
@@ -69,7 +69,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="programmer" items="${project.requests}">
+						<c:forEach var="programmer" items="${project.programmmers}">
 							<tr>
 								<td>${programmer.firstName} ${programmer.lastName}</td>
 								<td>${programmer.phoneNumber}</td>

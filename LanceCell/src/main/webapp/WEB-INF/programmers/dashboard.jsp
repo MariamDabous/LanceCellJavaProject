@@ -27,13 +27,14 @@
 		<a href="/programmers/Profile/${thisProg.id}">My Profile</a>
 	</h3>
 	
-	<form action="/programmers/search">
-		<select name="language">
+	<form action="/programmers/search" class="text-center mt-3">
+	<label name="language">Choose Language:</label>
+		<select name="language" class="form-control">
 			<c:forEach var="language" items="${languages}">
 				<option value="${language }">${language.name}</option>
 			</c:forEach>
 		</select>
-		<input type="submit" value="Search"/>
+		<input type="submit" value="Choose" class="btn mt-2"/>
 	</form>
 	</div>
 	
@@ -100,7 +101,7 @@
 		<c:when test="${thisProg.project != null}">
 		<tr>
 		
-			<td><a href="/projects/show/${thisProg.project.id}">${proj.title}</a></td>
+			<td><a href="/programmers/show/${thisProg.project.id}">${thisProg.project.title}</a></td>
 			<td>${thisProg.project.owner.firstName}
 				${thisProg.project.owner.lastName}</td>
 			<td><a href="/programmers/showTeam/${thisProg.project.id}">ShowTeam</a></td>

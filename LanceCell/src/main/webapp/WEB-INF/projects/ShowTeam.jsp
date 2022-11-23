@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=windows-1256"
-    pageEncoding="windows-1256"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- Formatting (dates) --> 
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Formatting (dates) -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- form:form -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- for rendering errors on PUT routes -->
-<%@ page isErrorPage="true" %>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,5 @@
 <c:forEach var="programmer" items="${thisProjectTeam}">
 <h3 style="margin-left:15%;margin-top: 2%"> - ${programmer.firstName }${programmer.lastName }</h3>
 </c:forEach></p>
-
 </body>
 </html>
