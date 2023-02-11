@@ -1,4 +1,5 @@
 # LanceCellJavaProject
+
 ## Table of Contents:
 ### Inroduction
 ### Technologies Used
