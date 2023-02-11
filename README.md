@@ -36,3 +36,6 @@ LanceCell aims to empower users with the most accurate and comprehensive informa
 #### Ra'd Abdullah
 #### Marah Ashayer
 #### Maryam Dabous
+
+## Contact
+mariam.dabous@hotmail.com
